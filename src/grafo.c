@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 void cria_grafo(Grafo* g, int tam){
-    //OLA YAGO
+    //OLA YAGO okok
 }
 
 int busca_aresta(Grafo* g, int tam){
