@@ -2,14 +2,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void cria_grafo(Grafo* g, int tam)
+void cria_grafo(Grafo* g, int tam){
 
-int busca_aresta(Grafo* g, int tam)
+}
 
-void adiciona_aresta(Grafo* g, int x, int y)
+int busca_aresta(Grafo* g, int tam){
 
-void remove_aresta(Grafo* g, int x, int y)
+}
 
-void imprime_grafo(Grafo* g, int tam)
+void adiciona_aresta(Grafo* g, int x, int y){
 
-void apaga_grafo(Grafo* g, int tam)
+}
+
+void remove_aresta(Grafo* g, int x, int y){
+
+}
+
+void imprime_grafo(Grafo* g, int tam){
+
+}
+
+void apaga_grafo(Grafo* g, int tam){
+    
+}
