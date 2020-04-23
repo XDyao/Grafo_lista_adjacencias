@@ -1,5 +1,5 @@
 /*
-Creditos TAD Lista: https://github.com/matprado -- Mateus Prado Santos, ICMC/2018
+Creditos TAD Lista: https://github.com/matprado -- Mateus Prado, ICMC/2018
 */
 
 #ifndef LISTA_H
