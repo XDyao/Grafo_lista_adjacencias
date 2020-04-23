@@ -6,13 +6,14 @@
 #include <stdio.h>
 
 int main(){
-	
 	Grafo *g;
+
 	int n, m, x, y, q, operacao;
 	
 	scanf("%d %d", &n, &m);
 	
-	cria_grafo(g, n);
+	
+	g = cria_grafo(n);
 	
 	for(int i=0; i<m; i++){
 		scanf("%d %d", &x, &y);
@@ -33,14 +34,14 @@ int main(){
 				remove_aresta(g, x, y);
 				break;
 			case 3:
-				imprime_grafo(g, n);
+				imprime_grafo(g);
 				break;
 			default:
-				print("Operacao invalida\n");
+				printf("Operacao invalida\n");
 		}		
 	}
 	
-	apaga_grafo(g, n);
+	apaga_grafo(g);
 		
 	return 0;
 }
