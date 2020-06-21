@@ -8,8 +8,16 @@ Creditos TAD Lista: https://github.com/matprado -- Mateus Prado, ICMC/2018
 #define ERRO -404
 #define TIPO int  //Customização do tipo
 
-typedef struct LISTA_ LISTA;
-typedef struct NO_ NO;
+typedef struct LISTA_{
+	NO *inicio;
+	NO *fim;
+	int tam;
+}LISTA;
+
+typedef struct NO_{
+	TIPO item;
+	NO *proximo;
+}NO;
 
 /*Funções básicas:*/
 LISTA *lista_criar(void);

@@ -4,21 +4,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef enum{
- branco, cinza, preto
-}TipoCor;
-
-struct grafo{
-    LISTA **vertices;
-    int tamanho;
-};
-
 Grafo *cria_grafo(int tam){
     Grafo *gf = (Grafo*)malloc(sizeof(Grafo));
     gf->tamanho = tam;
     gf->vertices = (LISTA**)malloc(tam*sizeof(LISTA*));
     for(int i=0; i<gf->tamanho; i++){
         gf->vertices[i] = lista_criar();
+		gf->cor[i] = 0;
     }
     return gf;
 }
@@ -57,29 +49,41 @@ void apaga_grafo(Grafo* g){
     free(g);
 }
 
-NO *primeiroAdj(GRAFO* g, int vertice, int* erro){
+NO* PrimeiroListaAdj(Grafo* g, int vertice){
 	if(vertice > g->tamanho){
-		*erro = 1;
 		return NULL;
 	}
 	else{
 		NO *aux = g->vertices->inicio;
 		for(int i=0; i<vertice; i++){
-			aux = aux-> proximo;
+			aux = aux->proximo;
 		}
 		// aux é o vertice que queremos
-		aux->item->inicio;
+		return (aux->item->inicio);
 	}
 }
 
-void ProxAdj(Grafo* g, no_aresta** Adj, no_aresta** Prox, int* FimListaAdj){
-	*Adj= *Prox;
-	*Prox= (*Prox)->prox;
+int ListaAdjVazia(Grafo* g, int vertice){
+	if(vertice > g->tamanho){
+		return 0;
+	}
+	else{
+		NO* aux = g->vertices->inicio;
+		for(int i=0; i<vertice; i++){
+			aux = aux->proximo;
+		}
+		return (lista_vazia(aux->item));
+	}
+}
+
+void ProxAdj(Grafo* g, NO** Adj, NO** Prox, int* FimListaAdj){
+	*Adj = *Prox;
+	*Prox= (*Prox)->proximo;
 	if (*Prox == NULL){
 		*FimListaAdj= 1;
 	}
 }
-
+/*
 void visita_dfs(Grafo* g, int V, int* tempo, int d[], int t[], TipoCor cor[], int antecessor[]){
 	int FimListaAdj, erro;
 	no_lista *Adj, *Aux;
@@ -127,31 +131,31 @@ void busca_profundidade(Grafo* g){
 	}
 	
 }
-
+*/
 void visita_bfs(Grafo* g, int V, int distancia[], TipoCor cor[], int antecessor[]){
-	int FimListaAdj, erro;
-	no_lista *Adj, *Aux;
+	int FimListaAdj;
+	NO *Adj, *Aux;
 	
-	Fila F;
-	Create(&F);
+	Fila* F;
+	Create(F);
 	
 	cor[V]= cinza;
 	distancia[V]= 0;
-	Entra-Fila(&F, &V, &erro);
+	Entra(F, &V);
 	printf("No %d, distancia = %d, antecessor = %d\n", V, distancia[V], antecessor[V]);
 	
 	while(!IsEmpty(&F)){
-		Sai-Fila(&F, &V, &erro);
-		if(!ListaAdjVazia(g, V, &erro)){
-			Aux= PrimeiroListaAdj(g, V, &erro);
-			FimListaAdj= 0;
+		Sai(F, &V);
+		if(!ListaAdjVazia(g, V)){
+			Aux= PrimeiroListaAdj(g, V);
+			FimListaAdj = 0;
 			while (!FimListaAdj){
 				ProxAdj(g, &Adj, &Aux, &FimListaAdj);
-				if (cor[Adj->v] == branco){
-					cor[Adj->v]= cinza;
-					distancia[Adj->v]= distancia[V]+1;
-					antecessor[Adj->v]= V;
-					Entra-Fila(&F, &Adj->v, &erro);
+				if (cor[Adj->item] == branco){
+					cor[Adj->item]= cinza;
+					distancia[Adj->item]= distancia[V]+1;
+					antecessor[Adj->item]= V;
+					Entra(F, &Adj->item);
 					printf("No %d, distancia=%d, antecessor=%d\n", Adj->v, distancia[Adj->v], antecessor[Adj->v]);
 				}
 			}
@@ -167,13 +171,13 @@ void busca_largura(Grafo *g){
 	//-----Insere sub-rotina DSF para achar ciclos aqui-----//
 	
 	printf("*** Sequencia de nos visitados na busca em largura ***\n\n");
-	for(V= 1; V <= g->NumVertices; V++){
+	for(V= 1; V <= g->tamanho; V++){
 		cor[V]= branco;
 		distancia[V]= -1;
 		antecessor[V]= -1;
 	}
 	
-	for(V= 1; V <= g->NumVertices; V++){
+	for(V= 1; V <= g->tamanho; V++){
 		if(cor[V] == branco){
 			visita_bfs(g, V, distancia, cor, antecessor);
 		}

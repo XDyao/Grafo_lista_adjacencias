@@ -6,17 +6,6 @@ Creditos TAD Lista: https://github.com/matprado -- Mateus Prado, ICMC/2018
 #include <stdlib.h>
 #include "lista.h"
 
-struct LISTA_{
-	NO *inicio;
-	NO *fim;
-	int tam;
-};
-
-struct NO_{
-	TIPO item;
-	NO *proximo;
-};
-
 LISTA *lista_criar(void){
 	LISTA *new = (LISTA *)malloc(sizeof(LISTA));
 	if(new != NULL){		

@@ -2,13 +2,6 @@
 #include <stdlib.h>
 #include "fila.h"
 
-struct fila{
-	TIPO vet[TamFila];
-	int ini;
-	int fim;
-	int tam;
-};
-
 void Create(Fila* f){
 	f = (Fila*)malloc(sizeof(Fila));
 	if(f != NULL){		
@@ -43,15 +36,17 @@ int IsFull(Fila *f){
 
 void Entra(Fila* f, TIPO* elem){
 	if(f != NULL && !IsFull(f)){
-	 	f->vet[f->fim] = &elem;
+	 	f->vet[f->fim] = *elem;
 	 	f->fim = (f->fim+1) % TamFila; 	
 	 	f->tam++;
 	}	
 }
 
 void Sai(Fila* f, TIPO* elem){
+	TIPO* aux;
 	if(f != NULL && !IsEmpty(f)){
-		&elem = f->vet[f->ini];
+		aux = f->vet[f->ini];
+		elem = aux;
 		f->ini = (f->ini+1) % TamFila;
 		f->tam--;
 	}

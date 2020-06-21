@@ -4,8 +4,12 @@
 #define TIPO int
 #define TamFila 100
 
-typedef struct fila Fila;
-typedef struct no NO;
+typedef struct fila{
+	TIPO vet[TamFila];
+	int ini;
+	int fim;
+	int tam;
+}Fila;
 
 void Create(Fila* f);
 void Empty(Fila* f);
