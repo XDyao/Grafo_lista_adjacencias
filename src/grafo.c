@@ -128,6 +128,7 @@ void busca_profundidade(Grafo* g){
 */
 void visita_bfs(Grafo* g, int V, int distancia[], TipoCor cor[], int antecessor[]){
 	int FimListaAdj;
+
 	NO *Adj, *Aux;
 	
 	Fila* F;
@@ -136,7 +137,6 @@ void visita_bfs(Grafo* g, int V, int distancia[], TipoCor cor[], int antecessor[
 	cor[V]= cinza;
 	distancia[V]= 0;
 	Entra(F, &V);
-	printf("No %d, distancia = %d, antecessor = %d\n", V, distancia[V], antecessor[V]);
 	
 	while(!IsEmpty(F)){
 		Sai(F, &V);
@@ -150,7 +150,6 @@ void visita_bfs(Grafo* g, int V, int distancia[], TipoCor cor[], int antecessor[
 					distancia[Adj->item]= distancia[V]+1;
 					antecessor[Adj->item]= V;
 					Entra(F, &Adj->item);
-					//printf("No %d, distancia=%d, antecessor=%d\n", Adj->v, distancia[Adj->v], antecessor[Adj->v]);
 				}
 			}
 		}
@@ -161,10 +160,10 @@ void visita_bfs(Grafo* g, int V, int distancia[], TipoCor cor[], int antecessor[
 void busca_largura(Grafo *g){
 	int V, distancia[g->tamanho + 1], antecessor[g->tamanho];
 	TipoCor cor[g->tamanho];
-	
+	int contador = 0;
+
 	//-----Insere sub-rotina DSF para achar ciclos aqui-----//
 	
-	printf("*** Sequencia de nos visitados na busca em largura ***\n\n");
 	for(V= 1; V <= g->tamanho; V++){
 		cor[V]= branco;
 		distancia[V]= -1;
@@ -173,7 +172,10 @@ void busca_largura(Grafo *g){
 	
 	for(V= 1; V <= g->tamanho; V++){
 		if(cor[V] == branco){
+			contador++;
 			visita_bfs(g, V, distancia, cor, antecessor);
 		}
 	}
+
+	printf("%d\n", contador);
 }
