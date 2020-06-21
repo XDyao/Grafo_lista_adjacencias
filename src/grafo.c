@@ -1,6 +1,4 @@
 #include "grafo.h"
-#include "lista.h"
-#include "fila.h"
 #include <stdio.h>
 #include <stdlib.h>
 

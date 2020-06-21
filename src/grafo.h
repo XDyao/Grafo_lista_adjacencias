@@ -1,3 +1,6 @@
+#include "lista.h"
+#include "fila.h"
+
 typedef enum{
  branco, cinza, preto
 }TipoCor;
