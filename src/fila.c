@@ -1,3 +1,7 @@
+/*
+ *	Esse modulo contem a implementacao do TAD Fila, inspirada no modelo passado em aula, mas com alteracoes. 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "fila.h"
@@ -52,4 +56,3 @@ void Sai(Fila* f, TIPO* elem){
 	}
 	return;
 }
-

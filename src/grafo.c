@@ -1,3 +1,7 @@
+/*
+ *	Esse modulo contem a implementacao do TAD Grafo por Listas de adjacencias. Inspirada na teoria passada em aula, mas com alteracoes.
+ */
+
 #include "grafo.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,12 +27,10 @@ int busca_aresta(Grafo* g, int x, int y){
 
 void adiciona_aresta(Grafo* g, int x, int y){
     lista_inserir_ordenadamente(g->vertices[x],y);
-    lista_inserir_ordenadamente(g->vertices[y],x);
 }
 
 void remove_aresta(Grafo* g, int x, int y){
     lista_remover_item(g->vertices[x],y);
-    lista_remover_item(g->vertices[y],x);
 }
 
 void imprime_grafo(Grafo* g){

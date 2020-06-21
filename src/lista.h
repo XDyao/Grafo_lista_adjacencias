@@ -1,6 +1,11 @@
 /*
-Creditos TAD Lista: https://github.com/matprado -- Mateus Prado, ICMC/2018
-*/
+ *	Creditos TAD Lista: https://github.com/matprado -- Mateus Prado, ICMC/2018
+ */
+
+/*
+ *	Esse modulo contem a implementacao do TAD Lista, usando o TAD que pode ser encontrado no link passado em "Creditos".
+ *	Possui implementacoes extras que se julgaram necessarias. 
+ */
 
 #ifndef LISTA_H
 #define LISTA_H

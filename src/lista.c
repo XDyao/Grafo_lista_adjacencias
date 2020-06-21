@@ -1,6 +1,11 @@
 /*
-Creditos TAD Lista: https://github.com/matprado -- Mateus Prado, ICMC/2018
-*/
+ *	Creditos TAD Lista: https://github.com/matprado -- Mateus Prado, ICMC/2018
+ */
+
+/*
+ *	Esse modulo contem a implementacao do TAD Lista, usando o TAD que pode ser encontrado no link passado em "Creditos".
+ *	Possui implementacoes extras que se julgaram necessarias. 
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -71,7 +76,7 @@ int lista_inserir_ordenadamente(LISTA *L, TIPO item){
 			busca = L->inicio;
 			while(busca != NULL && busca->item < aux->item){
 				anterior = busca;
-				busca = busca->proximo; /* anterior recebe o nó anterior de busca*/
+				busca = busca->proximo; /*anterior recebe o nó anterior de busca*/
 			}
 			if(busca == L->inicio){ 	//CASO PARTICULAR: inserir como primeiro elemento
 				aux->proximo = L->inicio;
@@ -96,7 +101,7 @@ int lista_remover_item(LISTA *L, TIPO chave){
 	if(L != NULL && !lista_vazia(L)){
 		p = L->inicio;
 		while((p != NULL) && (p->item != chave)){
-			aux = p; /* aux_busca recebe o nó anterior de aux_remocao*/
+			aux = p; /*aux_busca recebe o nó anterior de aux_remocao*/
 			p = p->proximo;
 		}
 		if(p != NULL){
@@ -107,7 +112,7 @@ int lista_remover_item(LISTA *L, TIPO chave){
 				aux->proximo = p->proximo;
 				p->proximo = NULL;
 			}
-			if(p == L->fim){ /* Se a chave está no último nó*/
+			if(p == L->fim){ /*Se a chave está no último nó*/
 				L->fim = aux;
 			}
 			L->tam--;
