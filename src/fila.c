@@ -45,7 +45,7 @@ void Entra(Fila* f, TIPO* elem){
 void Sai(Fila* f, TIPO* elem){
 	TIPO* aux;
 	if(f != NULL && !IsEmpty(f)){
-		aux = f->vet[f->ini];
+		*aux = f->vet[f->ini];
 		elem = aux;
 		f->ini = (f->ini+1) % TamFila;
 		f->tam--;
