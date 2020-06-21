@@ -8,38 +8,19 @@
 int main(){
 	Grafo *g;
 
-	int n, m, x, y, q, operacao;
+	int V, E, x, y;
 	
-	scanf("%d %d", &n, &m);
+	scanf("%d", &V);
+	g = cria_grafo(V);
 	
+	scanf("%d", &E);
 	
-	g = cria_grafo(n);
-	
-	for(int i=0; i<m; i++){
+	for(int i=0; i<E; i++){
 		scanf("%d %d", &x, &y);
-		adiciona_aresta(g, x, y);	
+		adiciona_aresta(g, x, y);
 	}
 	
-	scanf("%d", &q);
-	
-	for(int i=0; i<q; i++){
-		scanf("%d", &operacao);
-		switch(operacao){
-			case 1:
-				scanf("%d %d", &x, &y);
-				adiciona_aresta(g, x, y);
-				break;
-			case 2:
-				scanf("%d %d", &x, &y);
-				remove_aresta(g, x, y);
-				break;
-			case 3:
-				imprime_grafo(g);
-				break;
-			default:
-				printf("Operacao invalida\n");
-		}		
-	}
+	busca_largura(g, V);
 	
 	apaga_grafo(g);
 		
