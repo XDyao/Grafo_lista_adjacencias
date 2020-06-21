@@ -10,12 +10,12 @@ Creditos TAD Lista: https://github.com/matprado -- Mateus Prado, ICMC/2018
 
 typedef struct NO_{
 	TIPO item;
-	NO *proximo;
+	struct NO_ *proximo;
 }NO;
 
 typedef struct LISTA_{
-	NO *inicio;
-	NO *fim;
+	struct NO_ *inicio;
+	struct NO_ *fim;
 	int tam;
 }LISTA;
 

@@ -52,12 +52,12 @@ NO* PrimeiroListaAdj(Grafo* g, int vertice){
 		return NULL;
 	}
 	else{
-		NO *aux = g->vertices->inicio;
+		NO *aux = g->vertices[vertice]->inicio;
 		for(int i=0; i<vertice; i++){
 			aux = aux->proximo;
 		}
 		// aux é o vertice que queremos
-		return (aux->item->inicio);
+		return (aux);
 	}
 }
 
@@ -66,11 +66,7 @@ int ListaAdjVazia(Grafo* g, int vertice){
 		return 0;
 	}
 	else{
-		NO* aux = g->vertices->inicio;
-		for(int i=0; i<vertice; i++){
-			aux = aux->proximo;
-		}
-		return (lista_vazia(aux->item));
+		return lista_vazia(g->vertices[vertice]);
 	}
 }
 
@@ -142,7 +138,7 @@ void visita_bfs(Grafo* g, int V, int distancia[], TipoCor cor[], int antecessor[
 	Entra(F, &V);
 	printf("No %d, distancia = %d, antecessor = %d\n", V, distancia[V], antecessor[V]);
 	
-	while(!IsEmpty(&F)){
+	while(!IsEmpty(F)){
 		Sai(F, &V);
 		if(!ListaAdjVazia(g, V)){
 			Aux= PrimeiroListaAdj(g, V);
@@ -154,7 +150,7 @@ void visita_bfs(Grafo* g, int V, int distancia[], TipoCor cor[], int antecessor[
 					distancia[Adj->item]= distancia[V]+1;
 					antecessor[Adj->item]= V;
 					Entra(F, &Adj->item);
-					printf("No %d, distancia=%d, antecessor=%d\n", Adj->v, distancia[Adj->v], antecessor[Adj->v]);
+					//printf("No %d, distancia=%d, antecessor=%d\n", Adj->v, distancia[Adj->v], antecessor[Adj->v]);
 				}
 			}
 		}

@@ -20,7 +20,7 @@ int main(){
 		adiciona_aresta(g, x, y);
 	}
 	
-	busca_largura(g, V);
+	//./busca_largura(g, V);
 	
 	apaga_grafo(g);
 		
