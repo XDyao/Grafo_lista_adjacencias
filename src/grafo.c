@@ -12,7 +12,6 @@ Grafo *cria_grafo(int tam){
     gf->vertices = (LISTA**)malloc(tam*sizeof(LISTA*));
     for(int i=0; i<gf->tamanho; i++){
         gf->vertices[i] = lista_criar();
-		    //gf->cor[i] = 0;
     }
     return gf;
 }
@@ -125,7 +124,7 @@ void busca_profundidade(Grafo* g){
 	
 }
 */
-void visita_bfs(Grafo* g, int V, int distancia[], TipoCor cor[], int antecessor[]){
+void visita_bfs(Grafo* g, int V, int distancia[], unsigned char cor[], int antecessor[]){
 	int FimListaAdj;
 	
 	NO **aux, *Adj;
@@ -133,8 +132,8 @@ void visita_bfs(Grafo* g, int V, int distancia[], TipoCor cor[], int antecessor[
 	Fila* F;
 	F = Create();
 	
-	cor[V]= cinza;
-	distancia[V]= branco;
+	cor[V]= 1;
+	distancia[V]= 0;
 	Entra(F, &V);
 	while(!IsEmpty(F)){
 		Sai(F, &V);
@@ -143,8 +142,8 @@ void visita_bfs(Grafo* g, int V, int distancia[], TipoCor cor[], int antecessor[
 			FimListaAdj = 0;
 			while (!FimListaAdj){
 				aux = ProxAdj(g, Adj, &FimListaAdj);
-				if (cor[Adj->item] == branco){
-					cor[Adj->item]= cinza;
+				if (cor[Adj->item] == 0){
+					cor[Adj->item]= 1;
 					distancia[Adj->item]= distancia[V]+1;
 					antecessor[Adj->item]= V;
 					Entra(F, &Adj->item);
@@ -152,25 +151,25 @@ void visita_bfs(Grafo* g, int V, int distancia[], TipoCor cor[], int antecessor[
         Adj = aux[0];
 			}
 		}
-		cor[V]= preto;
+		cor[V]= 2;
 	}
 }
 
 void busca_largura(Grafo *g){
 	int V, distancia[g->tamanho + 1], antecessor[g->tamanho];
-	TipoCor cor[g->tamanho];
+	unsigned char cor[g->tamanho];
 	int contador = 0;
 
 	//-----Insere sub-rotina DSF para achar ciclos aqui-----//
 	
 	for(V= 0; V < g->tamanho; V++){
-		cor[V]= branco;
+		cor[V]= 0;
 		distancia[V]= -1;
 		antecessor[V]= -1;
 	}
 	
 	for(V= 0; V < g->tamanho; V++){
-		if(cor[V] == branco){
+		if(cor[V] == 0){
 			contador++;
 			visita_bfs(g, V, distancia, cor, antecessor);
 		}

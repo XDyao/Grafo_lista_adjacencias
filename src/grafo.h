@@ -5,16 +5,10 @@
 #include "lista.h"
 #include "fila.h"
 
-//Indicacao da cor do vertice.
-typedef enum{
- branco, cinza, preto
-}TipoCor;
-
 //Struct usada para o grafo.
 typedef struct grafo{
     LISTA **vertices;
     int tamanho;
-    TipoCor cor[];
 }Grafo;
 
 //Cria o grafo.
@@ -42,7 +36,7 @@ void apaga_grafo(Grafo* g);
 NO* PrimeiroListaAdj(Grafo* g, int vertice);
 int ListaAdjVazia(Grafo* g, int vertice);
 NO** ProxAdj(Grafo* g, NO* Adj, int* FimListaAdj);
-//void visita_dfs(Grafo* g, int V, int* tempo, int d[], int t[], TipoCor cor[], int antecessor[]);
+//void visita_dfs(Grafo* g, int V, int* tempo, int d[], int t[], unsigned char cor[], int antecessor[]);
 //void busca_profundidade(Grafo* g);
-void visita_bfs(Grafo *g, int V, int distancia[], TipoCor cor[], int antecessor[]);
+void visita_bfs(Grafo *g, int V, int distancia[], unsigned char cor[], int antecessor[]);
 void busca_largura(Grafo* g);
