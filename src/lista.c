@@ -72,6 +72,7 @@ int lista_inserir_ordenadamente(LISTA *L, TIPO item){
 		aux->proximo = NULL;
 		if(lista_vazia(L)){
 			L->inicio = aux;
+      L->fim = aux;
 		}else{
 			busca = L->inicio;
 			while(busca != NULL && busca->item < aux->item){

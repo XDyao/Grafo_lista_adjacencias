@@ -17,7 +17,7 @@ typedef struct fila{
 }Fila;
 
 //Criacao da fila.
-void Create(Fila* f);
+Fila *Create();
 
 //Deleta a fila.
 void Empty(Fila* f);

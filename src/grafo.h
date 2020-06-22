@@ -41,7 +41,7 @@ void apaga_grafo(Grafo* g);
 
 NO* PrimeiroListaAdj(Grafo* g, int vertice);
 int ListaAdjVazia(Grafo* g, int vertice);
-void ProxAdj(Grafo* g, NO** Adj, NO** Prox, int* FimListaAdj);
+NO** ProxAdj(Grafo* g, NO* Adj, int* FimListaAdj);
 //void visita_dfs(Grafo* g, int V, int* tempo, int d[], int t[], TipoCor cor[], int antecessor[]);
 //void busca_profundidade(Grafo* g);
 void visita_bfs(Grafo *g, int V, int distancia[], TipoCor cor[], int antecessor[]);

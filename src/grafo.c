@@ -12,7 +12,7 @@ Grafo *cria_grafo(int tam){
     gf->vertices = (LISTA**)malloc(tam*sizeof(LISTA*));
     for(int i=0; i<gf->tamanho; i++){
         gf->vertices[i] = lista_criar();
-		gf->cor[i] = 0;
+		    //gf->cor[i] = 0;
     }
     return gf;
 }
@@ -54,12 +54,7 @@ NO* PrimeiroListaAdj(Grafo* g, int vertice){
 		return NULL;
 	}
 	else{
-		NO *aux = g->vertices[vertice]->inicio;
-		for(int i=0; i<vertice; i++){
-			aux = aux->proximo;
-		}
-		// aux é o vertice que queremos
-		return (aux);
+		return g->vertices[vertice]->inicio;
 	}
 }
 
@@ -72,12 +67,14 @@ int ListaAdjVazia(Grafo* g, int vertice){
 	}
 }
 
-void ProxAdj(Grafo* g, NO** Adj, NO** Prox, int* FimListaAdj){
-	*Adj = *Prox;
-	*Prox= (*Prox)->proximo;
-	if (*Prox == NULL){
+NO **ProxAdj(Grafo* g, NO* Adj, int* FimListaAdj){
+  NO **aux = malloc(2*sizeof(NO*));
+  aux[0] = Adj;
+  aux[1] = Adj->proximo;
+	if (aux[1] == NULL){
 		*FimListaAdj= 1;
 	}
+  return aux;
 }
 /*
 void visita_dfs(Grafo* g, int V, int* tempo, int d[], int t[], TipoCor cor[], int antecessor[]){
@@ -130,29 +127,29 @@ void busca_profundidade(Grafo* g){
 */
 void visita_bfs(Grafo* g, int V, int distancia[], TipoCor cor[], int antecessor[]){
 	int FimListaAdj;
-
-	NO *Adj, *Aux;
+	
+	NO **aux, *Adj;
 	
 	Fila* F;
-	Create(F);
+	F = Create();
 	
 	cor[V]= cinza;
-	distancia[V]= 0;
+	distancia[V]= branco;
 	Entra(F, &V);
-	
 	while(!IsEmpty(F)){
 		Sai(F, &V);
 		if(!ListaAdjVazia(g, V)){
-			Aux= PrimeiroListaAdj(g, V);
+			Adj= PrimeiroListaAdj(g, V);
 			FimListaAdj = 0;
 			while (!FimListaAdj){
-				ProxAdj(g, &Adj, &Aux, &FimListaAdj);
+				aux = ProxAdj(g, Adj, &FimListaAdj);
 				if (cor[Adj->item] == branco){
 					cor[Adj->item]= cinza;
 					distancia[Adj->item]= distancia[V]+1;
 					antecessor[Adj->item]= V;
 					Entra(F, &Adj->item);
 				}
+        Adj = aux[0];
 			}
 		}
 		cor[V]= preto;
@@ -166,13 +163,13 @@ void busca_largura(Grafo *g){
 
 	//-----Insere sub-rotina DSF para achar ciclos aqui-----//
 	
-	for(V= 1; V <= g->tamanho; V++){
+	for(V= 0; V < g->tamanho; V++){
 		cor[V]= branco;
 		distancia[V]= -1;
 		antecessor[V]= -1;
 	}
 	
-	for(V= 1; V <= g->tamanho; V++){
+	for(V= 0; V < g->tamanho; V++){
 		if(cor[V] == branco){
 			contador++;
 			visita_bfs(g, V, distancia, cor, antecessor);

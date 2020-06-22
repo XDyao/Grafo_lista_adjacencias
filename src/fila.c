@@ -6,14 +6,14 @@
 #include <stdlib.h>
 #include "fila.h"
 
-void Create(Fila* f){
-	f = (Fila*)malloc(sizeof(Fila));
+Fila *Create(){
+	Fila *f = (Fila*)malloc(sizeof(Fila));
 	if(f != NULL){		
 		f->ini = 0;
 		f->fim = 0;
 		f->tam = 0;
 	}
-	return;
+	return f;
 }
 
 void Empty(Fila* f){
@@ -40,17 +40,15 @@ int IsFull(Fila *f){
 
 void Entra(Fila* f, TIPO* elem){
 	if(f != NULL && !IsFull(f)){
-	 	f->vet[f->fim] = *elem;
+	 	f->vet[f->fim] = *elem;	
 	 	f->fim = (f->fim+1) % TamFila; 	
 	 	f->tam++;
 	}	
 }
 
 void Sai(Fila* f, TIPO* elem){
-	TIPO* aux;
 	if(f != NULL && !IsEmpty(f)){
-		*aux = f->vet[f->ini];
-		elem = aux;
+		elem = &(f->vet[f->ini]);
 		f->ini = (f->ini+1) % TamFila;
 		f->tam--;
 	}
