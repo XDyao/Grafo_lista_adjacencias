@@ -1,5 +1,5 @@
 all:
-	gcc -o	Main	src/Fila.c	src/Lista.c	src/Grafo.c	src/Main.c
+	gcc -o	Main	src/fila.c	src/lista.c	src/grafo.c	src/main.c
 
 run:
 	./Main
